@@ -3,13 +3,13 @@ export default function Home() {
     <div className="w-full">
 
       {/* HERO SECTION */}
-      <section className="bg-slate-50 pt-24 pb-32">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-serif font-semibold text-slate-900 leading-tight">
+      <section className="bg-slate-50 pt-24 pb-32 animate-fade-in">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12 py-12">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-slate-900 leading-tight">
             Smarter market insights,<br /> built for traders
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-slate-600">
+          <p className="mt-6 max-w-xl text-2xl text-slate-600">
             Learn, analyze, and grow with expert-backed financial education
             and practical market tools.
           </p>
