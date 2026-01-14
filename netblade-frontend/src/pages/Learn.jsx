@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 export default function Learn() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white px-6 py-16">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white px-8 lg:px-16 py-16">
+      <div className="w-full mx-auto">
         {/* Header */}
         <div className="mb-16 text-center animate-fade-in-up">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">

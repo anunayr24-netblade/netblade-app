@@ -26,6 +26,8 @@ import HelpCenter from "./pages/HelpCenter";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Disclaimer from "./pages/Disclaimer";
+import Profile from "./pages/Profile";
+import ResearchAnalystDashboard from "./pages/ResearchAnalystDashboard";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -39,6 +41,8 @@ export default function AppRoutes() {
           <Route path="market" element={<Market />} />
           <Route path="contact" element={<Contact />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="research-analyst-dashboard" element={<ResearchAnalystDashboard />} />
           <Route path="account-settings" element={<AccountSettings />} />
           <Route path="technical-analysis" element={<TechnicalAnalysis />} />
           <Route path="risk-management" element={<RiskManagement />} />

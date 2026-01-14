@@ -4,7 +4,7 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="bg-gradient-to-br from-slate-50 via-white to-teal-50 pt-24 pb-32 animate-fade-in">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+        <div className="w-full mx-auto px-8 lg:px-16 py-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-in-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-slate-900 leading-tight">
@@ -67,7 +67,7 @@ export default function Home() {
 
       {/* WHAT NETBLADE HELPS YOU DO */}
       <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="w-full mx-auto px-8 lg:px-16">
           <div className="text-center animate-fade-in-up">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               What Netblade Helps You Do
@@ -128,7 +128,7 @@ export default function Home() {
 
       {/* MARKET INSIGHTS */}
       <section className="bg-slate-900 py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="w-full mx-auto px-8 lg:px-16">
           <h2 className="text-center text-2xl font-semibold text-white">
             Market Insights
           </h2>

@@ -129,8 +129,8 @@ export default function TechnicalAnalysis() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white px-6 py-16">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white px-8 lg:px-16 py-16">
+      <div className="w-full mx-auto">
         {/* Header */}
         <div className="mb-16 animate-fade-in-up">
           <Link

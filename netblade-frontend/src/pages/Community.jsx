@@ -38,7 +38,7 @@ export default function Community() {
 
   return (
     <div className="min-h-screen bg-slate-100 px-4 py-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
 
         {/* LEFT SIDEBAR */}
         <aside className="hidden lg:block lg:col-span-3">
