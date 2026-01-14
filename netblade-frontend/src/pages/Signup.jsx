@@ -19,8 +19,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 animate-fade-in">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4">
+      <div className="w-full max-w-md bg-white/95 backdrop-blur rounded-2xl shadow-2xl p-8 animate-fade-in">
 
         {/* Header */}
         <div className="text-center mb-6">
@@ -33,7 +33,42 @@ export default function Signup() {
             today
           </p>
         </div>
+          {/* Social Login */}
+<div className="space-y-3 mb-6">
+  <button
+    type="button"
+    className="w-full flex items-center justify-center gap-3 rounded-md border border-slate-300 bg-white py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
+  >
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="h-5 w-5" />
+    Continue with Google
+  </button>
 
+  <button
+    type="button"
+    className="w-full flex items-center justify-center gap-3 rounded-md border border-slate-300 bg-white py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
+  >
+    <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" className="h-5 w-5" />
+    Continue with Facebook
+  </button>
+
+  <button
+    type="button"
+    className="w-full flex items-center justify-center gap-3 rounded-md border border-slate-300 bg-white py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
+  >
+    <img src="https://www.svgrepo.com/show/475655/apple-color.svg" alt="Apple" className="h-5 w-5" />
+    Continue with Apple
+  </button>
+</div>
+
+{/* Divider */}
+<div className="relative my-6">
+  <div className="absolute inset-0 flex items-center">
+    <div className="w-full border-t border-slate-200"></div>
+  </div>
+  <div className="relative flex justify-center text-xs text-slate-500 bg-white px-2">
+    or continue with email
+  </div>
+</div>
         {/* Form */}
         <form className="space-y-5" onSubmit={handleSubmit}>
           {/* Email */}
@@ -84,6 +119,14 @@ export default function Signup() {
             />
           </div>
 
+          {/* Info & Error */}
+          
+          <p className="text-xs text-slate-500 mt-1">
+            Password must be at least 8 characters long.
+
+            By signing up, you agree to our{"Terms of Service"} and {"Privacy Policy"}.
+          </p>
+          
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
           {/* Submit */}
