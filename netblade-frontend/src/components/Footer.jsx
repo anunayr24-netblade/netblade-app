@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-900 text-white py-12">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-5">
           {/* Brand */}
           <div>
             <h3 className="text-xl font-bold text-teal-400">Netblade</h3>
@@ -28,8 +28,19 @@ export default function Footer() {
             <ul className="mt-2 space-y-1 text-sm text-slate-400">
               <li><a href="/market" className="hover:text-teal-400 transition">Market Data</a></li>
               <li><a href="/community" className="hover:text-teal-400 transition">Community</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition">Help Center</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition">Contact</a></li>
+              <li><a href="/articles" className="hover:text-teal-400 transition">Articles</a></li>
+              <li><a href="/help-center" className="hover:text-teal-400 transition">Help Center</a></li>
+            </ul>
+          </div>
+
+          {/* Articles */}
+          <div>
+            <h4 className="font-semibold text-slate-300">Articles</h4>
+            <ul className="mt-2 space-y-1 text-sm text-slate-400">
+              <li><a href="/articles" className="hover:text-teal-400 transition">Market Analysis</a></li>
+              <li><a href="/articles" className="hover:text-teal-400 transition">Trading Strategies</a></li>
+              <li><a href="/articles" className="hover:text-teal-400 transition">Risk Management</a></li>
+              <li><a href="/articles" className="hover:text-teal-400 transition">Market Psychology</a></li>
             </ul>
           </div>
 
@@ -37,9 +48,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-slate-300">Legal</h4>
             <ul className="mt-2 space-y-1 text-sm text-slate-400">
-              <li><a href="#" className="hover:text-teal-400 transition">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition">Disclaimer</a></li>
+              <li><a href="/privacy-policy" className="hover:text-teal-400 transition">Privacy Policy</a></li>
+              <li><a href="/terms-of-service" className="hover:text-teal-400 transition">Terms of Service</a></li>
+              <li><a href="/disclaimer" className="hover:text-teal-400 transition">Disclaimer</a></li>
             </ul>
           </div>
         </div>

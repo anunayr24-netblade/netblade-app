@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Community() {
   const [posts, setPosts] = useState([
@@ -63,6 +64,16 @@ export default function Community() {
 
         {/* FEED */}
         <main className="lg:col-span-6 space-y-6">
+
+          {/* Dashboard Link */}
+          <div className="bg-white rounded-xl shadow-sm p-4">
+            <Link
+              to="/dashboard"
+              className="inline-flex items-center px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-md hover:bg-teal-700 transition"
+            >
+              View My Dashboard →
+            </Link>
+          </div>
 
           {/* CREATE POST */}
           <div className="bg-white rounded-xl shadow-sm p-5">
