@@ -58,13 +58,6 @@ export default function Navbar() {
                         after:absolute after:left-0 after:-bottom-1
                         after:h-[2px] after:w-0 after:bg-teal-600
                         after:transition-all after:duration-300
-                        hover:after:w-full">Insights</Link>
-            <Link to="/" className="relative 
-                        transition-all duration-300 ease-out
-                        hover:text-slate-900
-                        after:absolute after:left-0 after:-bottom-1
-                        after:h-[2px] after:w-0 after:bg-teal-600
-                        after:transition-all after:duration-300
                         hover:after:w-full">Contact</Link>
           </nav>
 
