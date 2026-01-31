@@ -1,87 +1,125 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AuthModal from "./AuthModal";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState("login");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if user is logged in
+    const authStatus = localStorage.getItem("isAuthenticated") === "true";
+    setIsAuthenticated(authStatus);
+  }, []);
+
+  const handleAuthClick = (mode) => {
+    setAuthMode(mode);
+    setShowAuthModal(true);
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    setIsAuthenticated(false);
+  };
 
   return (
-    <header className="fixed top-0 w-full bg-gradient-to-b from-white via-slate-50 to-white shadow-sm z-50 animate-fade-in">
-      <div className="w-full mx-auto px-6 lg:px-12">
+    <header className="fixed top-0 w-full bg-gradient-to-r from-slate-950 to-slate-900 border-b border-slate-800 z-50 animate-fade-in">
+      <div className="w-full mx-auto px-4 lg:px-10">
+
+        {/* NAVBAR ROW */}
         <div className="flex h-16 items-center justify-between">
 
           {/* LOGO */}
-          <Link
-            to="/"
-            className="text-3xl md:text-4xl font-bold gradient-text tracking-tight hover-scale transition-transform"
-          >
-            Netblade
+          <Link to="/" className="flex items-center gap-2">
+            <h2 className="text-2xl font-serif font-bold text-white">
+              Net<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">blade</span>
+            </h2>
           </Link>
 
-          {/* NAV LINKS - Desktop */}
-          <nav className="hidden lg:flex items-center gap-8 text-base font-semibold text-slate-700 ml-auto">
-            <Link to="/" className="relative transition-all duration-300 ease-out hover:text-teal-600 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">
-              Home
-            </Link>
-            <Link to="/learn" className="relative transition-all duration-300 ease-out hover:text-teal-600 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">
-              Learn
-            </Link>
-            <Link to="/market" className="relative transition-all duration-300 ease-out hover:text-teal-600 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">
-              Market
-            </Link>
-            <Link to="/community" className="relative transition-all duration-300 ease-out hover:text-teal-600 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">
-              Community
-            </Link>
-            <Link to="/dashboard" className="relative transition-all duration-300 ease-out hover:text-teal-600 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">
-              Dashboard
-            </Link>
-            <Link to="/research-analyst-dashboard" className="relative transition-all duration-300 ease-out hover:text-teal-600 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">
-              Analyst Dashboard
-            </Link>
+          {/* NAV LINKS – DESKTOP */}
+          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300 ml-auto">
+            {[
+              { to: "/", label: "Home" },
+              { to: "/market", label: "Market" },
+              { to: "/learn", label: "Learn" },
+              { to: "/community", label: "Community" },
+              { to: "/articles", label: "Articles" },
+            ].map(({ to, label }) => (
+              <Link
+                key={label}
+                to={to}
+                className="relative transition hover:text-teal-400
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-gradient-to-r after:from-teal-400 after:to-blue-400
+                after:transition-all after:duration-300 hover:after:w-full"
+              >
+                {label}
+              </Link>
+            ))}
+            
+            {/* Dashboard - Only show when authenticated */}
+            {isAuthenticated && (
+              <Link
+                to="/dashboard"
+                className="relative transition hover:text-teal-400
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-gradient-to-r after:from-teal-400 after:to-blue-400
+                after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Dashboard
+              </Link>
+            )}
           </nav>
 
           {/* ACTIONS */}
-          <div className="flex items-center gap-4 ml-8">
-            {/* Notifications */}
-            <button className="p-2 rounded-lg hover:bg-slate-100 transition-colors relative">
-              <svg className="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM21 5a2 2 0 00-2-2H5a2 2 0 00-2 2v14l4-4h14a2 2 0 002-2V5z" />
-              </svg>
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-            </button>
+          <div className="flex items-center gap-3 ml-6">
 
-            {/* Profile Dropdown */}
-            <div className="relative">
-              <button className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 transition-colors">
-                <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                  <span className="text-teal-600 text-sm font-bold">JD</span>
-                </div>
-                <span className="hidden md:block text-slate-700 font-medium">Profile</span>
-                <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+            {!isAuthenticated ? (
+              <>
+                {/* LOGIN */}
+                <button
+                  onClick={() => handleAuthClick("login")}
+                  className="hidden sm:inline-flex px-4 py-2 text-sm font-medium
+                  text-teal-400 border border-teal-500/30 hover:border-teal-500/50
+                  rounded-md hover:bg-slate-800/50 transition-all duration-300"
+                >
+                  Login
+                </button>
+
+                {/* SIGN UP */}
+                <button
+                  onClick={() => handleAuthClick("signup")}
+                  className="px-4 py-2 text-sm font-semibold text-white rounded-md
+                  bg-gradient-to-r from-teal-600 to-cyan-600
+                  hover:from-teal-500 hover:to-cyan-500 transition-all shadow-lg hover:shadow-xl"
+                >
+                  Sign up
+                </button>
+              </>
+            ) : (
+              /* LOGOUT */
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 text-sm font-medium
+                text-red-400 border border-red-500/30 hover:border-red-500/50
+                rounded-md hover:bg-slate-800/50 transition-all duration-300"
+              >
+                Logout
               </button>
-            </div>
+            )}
 
-            <Link
-              to="/login"
-              className="hidden sm:inline-flex rounded-lg px-4 py-2 text-base font-semibold text-teal-600 hover:bg-teal-50 hover:text-teal-700 transition-all duration-300"
-            >
-              Login
-            </Link>
-
-            <Link
-              to="/signup"
-              className="rounded-lg bg-teal-600 px-4 py-2 text-base font-semibold text-white hover:bg-teal-700 hover-lift transition-all duration-300 shadow-md"
-            >
-              Sign up
-            </Link>
-
-            {/* Mobile Menu Button */}
+            {/* MOBILE MENU BUTTON */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-md hover:bg-slate-800 transition"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -92,39 +130,89 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         {isMenuOpen && (
-          <div className="lg:hidden animate-slide-in-left">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-slate-200 shadow-lg">
-              <Link to="/" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                Home
-              </Link>
-              <Link to="/learn" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                Learn
-              </Link>
-              <Link to="/market" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                Market
-              </Link>
-              <Link to="/community" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                Community
-              </Link>
-              <Link to="/dashboard" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                Dashboard
-              </Link>
-              <Link to="/research-analyst-dashboard" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                Analyst Dashboard
-              </Link>
-              <div className="pt-4 pb-2 border-t border-slate-200">
-                <Link to="/profile" className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
-                  Profile
+          <div className="lg:hidden border-t border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 shadow-md">
+            <div className="px-4 py-3 space-y-1">
+              {[
+                ["/home", "Home"],
+                ["/market", "Market"],
+                ["/learn", "Learn"],
+                ["/community", "Community"],
+                ["/articles", "Articles"],
+              ].map(([to, label]) => (
+                <Link
+                  key={label}
+                  to={to}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md text-slate-300
+                  hover:text-teal-400 hover:bg-slate-800/50 transition"
+                >
+                  {label}
                 </Link>
-                <Link to="/login" className="block px-3 py-2 text-base font-medium text-teal-600 hover:text-teal-700 hover:bg-teal-50 rounded-lg transition-colors">
-                  Login
+              ))}
+
+              {/* Conditional Dashboard for Mobile */}
+              {isAuthenticated && (
+                <Link
+                  to="/dashboard"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md text-slate-300
+                  hover:text-teal-400 hover:bg-slate-800/50 transition"
+                >
+                  Dashboard
                 </Link>
+              )}
+
+              <div className="pt-3 border-t border-slate-800">
+                {!isAuthenticated ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        handleAuthClick("login");
+                        setIsMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 text-teal-400
+                      hover:bg-slate-800/50 rounded-md transition"
+                    >
+                      Login
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleAuthClick("signup");
+                        setIsMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 text-white
+                      hover:bg-slate-800/50 rounded-md transition mt-1"
+                    >
+                      Sign up
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full text-left px-3 py-2 text-red-400
+                    hover:bg-slate-800/50 rounded-md transition"
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
             </div>
           </div>
         )}
+
+        {/* AUTH MODAL */}
+        <AuthModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
+          initialMode={authMode}
+          onLoginSuccess={handleLoginSuccess}
+        />
+
       </div>
     </header>
   );

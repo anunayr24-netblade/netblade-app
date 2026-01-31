@@ -1,11 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function RiskManagement() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: '/risk-management' } });
+    }
+  }, [navigate]);
   const modules = [
     {
       id: 1,
       title: "What is Risk Management?",
       description: "Foundation concepts of risk management",
+      link: "/risk-management/what-is-risk-management",
       topics: [
         "Why traders lose money",
         "Why profit is secondary to survival",
@@ -17,6 +27,7 @@ export default function RiskManagement() {
       id: 2,
       title: "Position Sizing",
       description: "Most important topic in trading",
+      link: "/risk-management/position-sizing",
       topics: [
         "What % of capital to risk per trade",
         "Fixed risk vs variable risk",
@@ -28,6 +39,7 @@ export default function RiskManagement() {
       id: 3,
       title: "Stop Loss – The Lifeline",
       description: "Essential risk control mechanism",
+      link: "/risk-management/stop-loss",
       topics: [
         "What is stop loss",
         "Types of stop loss",
@@ -39,6 +51,7 @@ export default function RiskManagement() {
       id: 4,
       title: "Risk–Reward Ratio",
       description: "Understanding profitable trading ratios",
+      link: "/risk-management/risk-reward-ratio",
       topics: [
         "Why 1:1 is risky",
         "Ideal RR (1:2 or 1:3)",
@@ -50,6 +63,7 @@ export default function RiskManagement() {
       id: 5,
       title: "Position Sizing Formula",
       description: "Practical calculations for position sizing",
+      link: "/risk-management/position-sizing-formula",
       topics: [
         "Position Size = Risk per trade / (Entry – Stop Loss)",
         "Examples for equity trading",
@@ -61,6 +75,7 @@ export default function RiskManagement() {
       id: 6,
       title: "Capital Allocation Strategy",
       description: "How to divide and manage your capital",
+      link: "/risk-management/capital-allocation",
       topics: [
         "Trading capital vs emergency fund",
         "Long-term investment allocation",
@@ -72,6 +87,7 @@ export default function RiskManagement() {
       id: 7,
       title: "Risk Per Day / Week Rules",
       description: "Setting daily and weekly risk limits",
+      link: "/risk-management/daily-weekly-risk-rules",
       topics: [
         "Max 2% loss per day",
         "Stop trading after consecutive losses",
@@ -83,6 +99,7 @@ export default function RiskManagement() {
       id: 8,
       title: "Psychological Risk Management",
       description: "Mental aspects of risk control",
+      link: "/risk-management/psychological-risk",
       topics: [
         "Overtrading prevention",
         "Revenge trading avoidance",
@@ -95,22 +112,12 @@ export default function RiskManagement() {
       id: 9,
       title: "Common Risk Management Mistakes",
       description: "Learn from others' errors",
+      link: "/risk-management/common-mistakes",
       topics: [
         "Trading without stop-loss",
         "Over-leveraging positions",
         "Trading news without plan",
         "Increasing lot size after loss"
-      ]
-    },
-    {
-      id: 10,
-      title: "Risk Disclaimer",
-      description: "Important legal and educational notices",
-      topics: [
-        "Trading involves risk",
-        "Past performance doesn't guarantee future results",
-        "Educational purposes only",
-        "Interactive tools (future features)"
       ]
     }
   ];
@@ -225,9 +232,12 @@ export default function RiskManagement() {
                     </div>
                   </div>
                   <div className="flex-shrink-0">
-                    <button className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 transition">
+                    <Link
+                      to={module.link}
+                      className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 transition"
+                    >
                       Start Module
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

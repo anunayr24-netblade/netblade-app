@@ -50,25 +50,26 @@ export default function ResearchAnalystDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-slate-200">
+      <div className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700/50">
         <div className="max-w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+          <div className="flex justify-between items-center py-8">
             <div>
-              <h1 className="text-3xl font-bold text-slate-900 animate-fade-in">Research Analyst Dashboard</h1>
-              <p className="text-slate-600 mt-1">Manage your content and track performance</p>
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-white animate-fade-in flex items-center gap-3">
+                🔬 Research Analyst Dashboard
+              </h1>
+              <p className="text-slate-300 mt-2 font-medium">Manage your content, track performance & grow your audience</p>
             </div>
             <div className="flex items-center space-x-4">
               <Link
                 to="/dashboard"
-                className="px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+                className="px-6 py-3 text-sm font-bold text-slate-900 bg-white hover:bg-slate-100 rounded-xl transition-all duration-300 shadow-lg"
               >
-                Back to Main Dashboard
+                ← Back to Dashboard
               </Link>
-              <button className="px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors animate-pulse">
-                <Plus className="w-4 h-4 inline mr-2" />
-                Create Content
+              <button className="px-6 py-3 bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white text-sm font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+                ✨ Create Content
               </button>
             </div>
           </div>
@@ -77,27 +78,26 @@ export default function ResearchAnalystDashboard() {
 
       <div className="max-w-full px-4 sm:px-6 lg:px-8 py-8">
         {/* Navigation Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 mb-8 animate-slide-in-left">
-          <div className="border-b border-slate-200">
+        <div className="bg-white rounded-2xl shadow-lg border border-slate-200 mb-8 animate-slide-in-left border-slate-200">
             <nav className="flex space-x-8 px-6">
               {[
-                { id: 'overview', label: 'Overview', icon: BarChart3 },
-                { id: 'articles', label: 'Articles', icon: FileText },
-                { id: 'blogs', label: 'Blogs', icon: BookOpen },
-                { id: 'qna', label: 'Q&A Sessions', icon: MessageSquare },
-                { id: 'content', label: 'Educational Content', icon: Upload },
-                { id: 'revenue', label: 'Revenue', icon: DollarSign }
+                { id: 'overview', label: 'Overview', icon: '📊' },
+                { id: 'articles', label: 'Articles', icon: '📄' },
+                { id: 'blogs', label: 'Blogs', icon: '📖' },
+                { id: 'qna', label: 'Q&A Sessions', icon: '💬' },
+                { id: 'content', label: 'Educational', icon: '📚' },
+                { id: 'revenue', label: 'Revenue', icon: '💰' }
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                  className={`flex items-center py-4 px-1 border-b-2 font-bold text-sm transition-all duration-300 ${
                     activeTab === tab.id
                       ? 'border-teal-500 text-teal-600'
-                      : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+                      : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-teal-300'
                   }`}
                 >
-                  <tab.icon className="w-4 h-4 mr-2" />
+                  <span className="mr-2">{tab.icon}</span>
                   {tab.label}
                 </button>
               ))}
@@ -110,50 +110,50 @@ export default function ResearchAnalystDashboard() {
           <div className="space-y-8 animate-fade-in">
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow animate-scale-in">
+              <div className="bg-gradient-to-br from-white to-blue-50 p-6 rounded-2xl shadow-lg border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="flex items-center">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <FileText className="w-6 h-6 text-blue-600" />
+                  <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl">
+                    <span className="text-2xl">📄</span>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-slate-600">Total Articles</p>
-                    <p className="text-2xl font-bold text-slate-900">{stats.totalArticles}</p>
+                    <p className="text-sm font-bold text-slate-600">Total Articles</p>
+                    <p className="text-3xl font-bold text-slate-900 mt-1">{stats.totalArticles}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow animate-scale-in">
+              <div className="bg-gradient-to-br from-white to-green-50 p-6 rounded-2xl shadow-lg border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="flex items-center">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <BookOpen className="w-6 h-6 text-green-600" />
+                  <div className="p-3 bg-gradient-to-br from-green-100 to-green-200 rounded-xl">
+                    <span className="text-2xl">📖</span>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-slate-600">Total Blogs</p>
-                    <p className="text-2xl font-bold text-slate-900">{stats.totalBlogs}</p>
+                    <p className="text-sm font-bold text-slate-600">Total Blogs</p>
+                    <p className="text-3xl font-bold text-slate-900 mt-1">{stats.totalBlogs}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow animate-scale-in">
+              <div className="bg-gradient-to-br from-white to-purple-50 p-6 rounded-2xl shadow-lg border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="flex items-center">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <Users className="w-6 h-6 text-purple-600" />
+                  <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl">
+                    <span className="text-2xl">👥</span>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-slate-600">Subscribers</p>
-                    <p className="text-2xl font-bold text-slate-900">{stats.subscribers.toLocaleString()}</p>
+                    <p className="text-sm font-bold text-slate-600">Subscribers</p>
+                    <p className="text-3xl font-bold text-slate-900 mt-1">{stats.subscribers.toLocaleString()}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow animate-scale-in">
+              <div className="bg-gradient-to-br from-white to-yellow-50 p-6 rounded-2xl shadow-lg border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="flex items-center">
-                  <div className="p-2 bg-yellow-100 rounded-lg">
-                    <DollarSign className="w-6 h-6 text-yellow-600" />
+                  <div className="p-3 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl">
+                    <span className="text-2xl">💰</span>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-slate-600">Monthly Revenue</p>
-                    <p className="text-2xl font-bold text-slate-900">${stats.monthlyRevenue.toLocaleString()}</p>
+                    <p className="text-sm font-bold text-slate-600">Monthly Revenue</p>
+                    <p className="text-3xl font-bold text-slate-900 mt-1">${stats.monthlyRevenue.toLocaleString()}</p>
                   </div>
                 </div>
               </div>
@@ -376,6 +376,5 @@ export default function ResearchAnalystDashboard() {
           </div>
         )}
       </div>
-    </div>
   );
 }

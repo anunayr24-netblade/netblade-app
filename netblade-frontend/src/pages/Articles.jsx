@@ -79,14 +79,14 @@ export default function Articles() {
   const categories = ["All", "Market Analysis", "Technical Analysis", "Risk Management", "Cryptocurrency", "Psychology", "Derivatives", "Portfolio Management", "Commodities"];
 
   return (
-    <div className="min-h-screen bg-slate-50 px-6 py-16">
-      <div className="w-full mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-4 md:px-8 py-12 md:py-16">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-3xl font-bold text-slate-900">
+        <div className="mb-12 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
             Articles
           </h1>
-          <p className="mt-3 text-slate-600 max-w-2xl">
+          <p className="mt-3 text-slate-400 max-w-2xl leading-relaxed">
             In-depth articles, insights, and educational content to help you become a better trader
             and investor. Stay informed with the latest market analysis and trading strategies.
           </p>
@@ -94,35 +94,37 @@ export default function Articles() {
 
         {/* Featured Article */}
         {articles.find(article => article.featured) && (
-          <div className="mb-12">
-            <h2 className="text-xl font-semibold text-slate-900 mb-6">Featured Article</h2>
-            <div className="bg-white rounded-xl p-8 shadow-sm border border-slate-200">
+          <div className="mb-12 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <h2 className="text-2xl font-bold text-white mb-6">Featured Article</h2>
+            <div className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 md:p-8 shadow-2xl border border-teal-500/30 backdrop-blur-sm hover:shadow-2xl hover:border-teal-500/50 transition-all duration-300">
               {(() => {
                 const featured = articles.find(article => article.featured);
                 return (
-                  <div className="flex flex-col md:flex-row gap-6">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-teal-100 text-teal-700 text-sm rounded-full">
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="md:col-span-2">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="px-3 py-1 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 text-teal-300 text-xs font-bold rounded-full border border-teal-500/30">
                           {featured.category}
                         </span>
-                        <span className="text-sm text-slate-500">{featured.readTime}</span>
+                        <span className="text-xs text-slate-400">{featured.readTime}</span>
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                         {featured.title}
                       </h3>
-                      <p className="text-slate-600 mb-4">
+                      <p className="text-slate-300 text-sm md:text-base mb-6 leading-relaxed">
                         {featured.excerpt}
                       </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-500">{featured.date}</span>
-                        <button className="px-6 py-2 bg-teal-600 text-white text-sm font-medium rounded-md hover:bg-teal-700 transition">
-                          Read Article
+                      <div className="flex items-center justify-between flex-wrap gap-4">
+                        <span className="text-sm text-slate-400">{featured.date}</span>
+                        <button className="px-6 py-2 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                          Read More →
                         </button>
                       </div>
                     </div>
-                    <div className="md:w-80 h-48 bg-gradient-to-br from-teal-100 to-blue-100 rounded-lg flex items-center justify-center">
-                      <span className="text-teal-600 text-6xl">📈</span>
+                    <div className="hidden md:flex items-center justify-center">
+                      <div className="w-40 h-40 bg-gradient-to-br from-teal-500/20 to-purple-500/20 rounded-2xl border border-teal-500/30 flex items-center justify-center text-6xl">
+                        📰
+                      </div>
                     </div>
                   </div>
                 );
@@ -132,13 +134,13 @@ export default function Articles() {
         )}
 
         {/* Categories */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">Categories</h2>
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-12 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <h2 className="text-2xl font-bold text-white mb-6">Categories</h2>
+          <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <button
                 key={category}
-                className="px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm rounded-md hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700 transition"
+                className="px-4 py-2 bg-slate-800 border border-slate-600/50 text-slate-300 text-sm font-medium rounded-lg hover:bg-slate-700 hover:border-teal-500/50 hover:text-teal-300 transition-all duration-300"
               >
                 {category}
               </button>
@@ -147,26 +149,30 @@ export default function Articles() {
         </div>
 
         {/* Articles Grid */}
-        <div className="mb-12">
-          <h2 className="text-xl font-semibold text-slate-900 mb-6">Latest Articles</h2>
+        <div className="mb-12 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <h2 className="text-2xl font-bold text-white mb-6">Latest Articles</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {articles.filter(article => !article.featured).map((article) => (
-              <article key={article.id} className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-full">
+            {articles.filter(article => !article.featured).map((article, idx) => (
+              <article 
+                key={article.id} 
+                className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 shadow-xl border border-slate-600/50 hover:shadow-2xl hover:border-teal-500/30 transition-all duration-300 group"
+                style={{ animationDelay: `${0.3 + idx * 0.05}s` }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 text-teal-300 text-xs font-bold rounded-full border border-teal-500/20">
                     {article.category}
                   </span>
-                  <span className="text-xs text-slate-500">{article.readTime}</span>
+                  <span className="text-xs text-slate-400">{article.readTime}</span>
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-3 line-clamp-2">
+                <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-teal-300 transition-colors">
                   {article.title}
                 </h3>
-                <p className="text-slate-600 text-sm mb-4 line-clamp-3">
+                <p className="text-slate-400 text-sm mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pt-4 border-t border-slate-600/30">
                   <span className="text-xs text-slate-500">{article.date}</span>
-                  <button className="text-teal-600 hover:text-teal-700 text-sm font-medium">
+                  <button className="text-teal-400 hover:text-teal-300 text-sm font-bold transition-colors">
                     Read More →
                   </button>
                 </div>
@@ -176,18 +182,18 @@ export default function Articles() {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl p-8 text-white text-center">
-          <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
-          <p className="mb-6 text-teal-100">
+        <div className="bg-gradient-to-r from-teal-600/20 to-blue-600/20 rounded-2xl p-8 text-white text-center border border-teal-500/30 backdrop-blur-sm animate-fade-in" style={{ animationDelay: "0.5s" }}>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">Stay Updated</h2>
+          <p className="mb-6 text-slate-300 max-w-xl mx-auto">
             Get the latest articles and market insights delivered to your inbox.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-2 rounded-md text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-white"
+              className="flex-1 px-4 py-3 rounded-lg bg-slate-800/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/50 transition"
             />
-            <button className="px-6 py-2 bg-white text-teal-600 font-medium rounded-md hover:bg-slate-50 transition">
+            <button className="px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">
               Subscribe
             </button>
           </div>

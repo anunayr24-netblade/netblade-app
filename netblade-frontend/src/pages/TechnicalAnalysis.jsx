@@ -1,11 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function TechnicalAnalysis() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: '/technical-analysis' } });
+    }
+  }, [navigate]);
   const modules = [
     {
       id: 1,
       title: "Basics of Technical Analysis",
       description: "Foundation concepts of technical analysis",
+      link: "/technical-analysis/basics",
       topics: [
         "What is Technical Analysis?",
         "Price, Volume & Time concept",
@@ -19,6 +29,7 @@ export default function TechnicalAnalysis() {
       id: 2,
       title: "Candlestick Patterns",
       description: "Master price action through candlestick patterns",
+      link: "/technical-analysis/candlestick-patterns-ta",
       topics: [
         "Single Candle Patterns: Doji, Hammer/Hanging Man, Spinning Top, Marubozu",
         "Multiple Candle Patterns: Engulfing, Star patterns, Harami"
@@ -30,6 +41,7 @@ export default function TechnicalAnalysis() {
       id: 3,
       title: "Chart Patterns",
       description: "Recognize and trade chart formations",
+      link: "/technical-analysis/chart-patterns",
       topics: [
         "Support & Resistance, Trendlines, Channels",
         "Head & Shoulders, Double Top/Bottom",
@@ -42,6 +54,7 @@ export default function TechnicalAnalysis() {
       id: 4,
       title: "Indicators & Oscillators",
       description: "Essential tools for technical analysis",
+      link: "/technical-analysis/indicators-oscillators",
       topics: [
         "Moving Averages (SMA, EMA)",
         "RSI, MACD, Bollinger Bands",
@@ -55,6 +68,7 @@ export default function TechnicalAnalysis() {
       id: 5,
       title: "Volume Analysis",
       description: "Understanding market participation",
+      link: "/technical-analysis/volume-analysis",
       topics: [
         "Volume interpretation",
         "Volume + price relationship",
@@ -67,6 +81,7 @@ export default function TechnicalAnalysis() {
       id: 6,
       title: "Trend Analysis",
       description: "Identify and follow market trends",
+      link: "/technical-analysis/trend-analysis",
       topics: [
         "Trend direction identification",
         "Higher high & higher low concepts",
@@ -80,6 +95,7 @@ export default function TechnicalAnalysis() {
       id: 7,
       title: "Support & Resistance",
       description: "Key price levels in trading",
+      link: "/technical-analysis/support-resistance",
       topics: [
         "Static vs Dynamic S/R",
         "Role reversal concept",
@@ -92,6 +108,7 @@ export default function TechnicalAnalysis() {
       id: 8,
       title: "Time Frames & Multi-Timeframe Analysis",
       description: "Trading across different time horizons",
+      link: "/technical-analysis/timeframes",
       topics: [
         "Scalping vs Intraday vs Swing trading",
         "Top-down analysis approach",
@@ -104,6 +121,7 @@ export default function TechnicalAnalysis() {
       id: 9,
       title: "Risk & Money Management",
       description: "Protect your capital while trading",
+      link: "/technical-analysis/risk-money-management",
       topics: [
         "Position sizing techniques",
         "Risk-reward ratio optimization",
@@ -117,6 +135,7 @@ export default function TechnicalAnalysis() {
       id: 10,
       title: "Trading Strategies",
       description: "Complete trading approaches",
+      link: "/technical-analysis/trading-strategies",
       topics: [
         "Breakout trading strategy",
         "Pullback trading strategy",
@@ -209,12 +228,15 @@ export default function TechnicalAnalysis() {
                     </div>
                   </div>
                   <div className="flex-shrink-0">
-                    <button className={`px-6 py-3 bg-${module.color}-600 text-white font-semibold rounded-xl hover:bg-${module.color}-700 hover-lift transition-all duration-300 shadow-lg`}>
+                    <Link
+                      to={module.link}
+                      className={`px-6 py-3 bg-${module.color}-600 text-white font-semibold rounded-xl hover:bg-${module.color}-700 hover-lift transition-all duration-300 shadow-lg inline-flex items-center`}
+                    >
                       Start Module
-                      <svg className="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

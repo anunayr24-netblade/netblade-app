@@ -1,23 +1,231 @@
 import { Link } from 'react-router-dom';
+import CourseCard from "../components/CourseCard.jsx";
 
+const courseData = [
+  {
+    title: "Market Foundations",
+    description: "Complete guide to market structure, participants, regulatory bodies, supply & demand, asset classes, order types, and trading mechanics.",
+    level: "Beginner",
+    lessons: 11,
+    color: "teal",
+    animationDelay: "50",
+    coursePath: "/market-foundations",
+    topics: ["Market Structure", "Participants", "Regulatory Bodies", "Supply & Demand", "Asset Classes", "Order Types"],
+    duration: "6 weeks"
+  },
+  {
+    title: "Market Basics: Principles & Theories",
+    description: "Master fundamental principles: Supply & Demand, EMH, Dow Theory, Modern Portfolio Theory, CAPM, Behavioral Finance, and more.",
+    level: "Beginner",
+    lessons: 12,
+    color: "blue",
+    animationDelay: "100",
+    coursePath: "/market-basics-principles",
+    topics: ["Supply & Demand", "Efficient Market Hypothesis", "Dow Theory", "Risk-Return Tradeoff", "Market Cycles", "Behavioral Finance"],
+    duration: "5 weeks"
+  },
+  {
+    title: "Technical Analysis",
+    description: "Master chart reading, patterns, indicators, and trading strategies.",
+    level: "Intermediate",
+    lessons: 12,
+    color: "green",
+    animationDelay: "200",
+    coursePath: "/technical-analysis",
+    topics: ["Chart patterns", "Support & resistance", "Trend analysis", "Trading strategies"],
+    duration: "6 weeks"
+  },
+  {
+    title: "Risk Management",
+    description: "Risk management, position sizing, and trader mindset.",
+    level: "All Levels",
+    lessons: 6,
+    color: "red",
+    animationDelay: "300",
+    coursePath: "/risk-management",
+    topics: ["Position sizing", "Risk/reward ratios", "Stop losses", "Portfolio management"],
+    duration: "3 weeks"
+  },
+  {
+    title: "Derivatives Trading",
+    description: "Futures and options trading - F&O complete guide with strategies.",
+    level: "Advanced",
+    lessons: 15,
+    color: "purple",
+    animationDelay: "400",
+    coursePath: "/derivatives",
+    topics: ["Futures contracts", "Options strategies", "Greeks", "Advanced hedging"],
+    duration: "8 weeks"
+  },
+  {
+    title: "Cryptocurrency",
+    description: "Digital currencies, blockchain, Bitcoin, Ethereum, and crypto trading.",
+    level: "Intermediate",
+    lessons: 10,
+    color: "orange",
+    animationDelay: "500",
+    coursePath: "/cryptocurrency",
+    topics: ["Blockchain basics", "Bitcoin & Ethereum", "Crypto wallets", "Trading altcoins"],
+    duration: "5 weeks"
+  },
+  {
+    title: "Market Psychology",
+    description: "Emotions, fear & greed, discipline, and trader mindset development.",
+    level: "All Levels",
+    lessons: 9,
+    color: "pink",
+    animationDelay: "100",
+    coursePath: "/market-psychology",
+    topics: ["Behavioral finance", "Decision making", "Fear and greed", "Discipline"],
+    duration: "4 weeks"
+  },
+  {
+    title: "Bonds & Fixed Income",
+    description: "Government bonds, corporate bonds, yields, and fixed income investing.",
+    level: "Beginner",
+    lessons: 7,
+    color: "indigo",
+    animationDelay: "200",
+    coursePath: "/bonds",
+    topics: ["Bond types", "Yield calculations", "Credit ratings", "Fixed income strategies"],
+    duration: "3 weeks"
+  },
+  {
+    title: "Mutual Funds",
+    description: "SIP, equity funds, debt funds, portfolio building, and fund selection.",
+    level: "Beginner",
+    lessons: 11,
+    color: "emerald",
+    animationDelay: "300",
+    coursePath: "/mutual-funds",
+    topics: ["Fund types", "SIP strategy", "NAV calculation", "Fund selection"],
+    duration: "5 weeks"
+  },
+  {
+    title: "Commodities Trading",
+    description: "Gold, oil, metals, agriculture - global commodity markets and trading.",
+    level: "Intermediate",
+    lessons: 8,
+    color: "amber",
+    animationDelay: "400",
+    coursePath: "/commodities",
+    topics: ["Commodity markets", "Hedging strategies", "Trading instruments", "Market analysis"],
+    duration: "4 weeks"
+  },
+  {
+    title: "Technical Indicators",
+    description: "MACD, RSI, Bollinger Bands, Ichimoku - complete indicator guide.",
+    level: "Intermediate",
+    lessons: 14,
+    color: "cyan",
+    animationDelay: "500",
+    coursePath: "/technical-indicators",
+    topics: ["Momentum indicators", "Trend indicators", "Oscillators", "Advanced indicators"],
+    duration: "7 weeks"
+  },
+  {
+    title: "Bullish Reversal Patterns",
+    description: "Master 11 powerful bullish candlestick patterns that signal trend reversals from bearish to bullish.",
+    level: "Intermediate",
+    lessons: 11,
+    color: "green",
+    animationDelay: "100",
+    coursePath: "/bullish-reversal-patterns",
+    topics: ["Hammer", "Morning Star", "Bullish Engulfing", "Three White Soldiers"],
+    duration: "2 weeks"
+  },
+  {
+    title: "Bearish Reversal Patterns",
+    description: "Learn 10 essential bearish candlestick patterns that identify market tops and downward reversals.",
+    level: "Intermediate",
+    lessons: 10,
+    color: "red",
+    animationDelay: "200",
+    coursePath: "/bearish-reversal-patterns",
+    topics: ["Shooting Star", "Evening Star", "Bearish Engulfing", "Three Black Crows"],
+    duration: "2 weeks"
+  },
+  {
+    title: "Continuation Patterns",
+    description: "Identify 10 continuation patterns that signal trend persistence after consolidation phases.",
+    level: "Intermediate",
+    lessons: 10,
+    color: "blue",
+    animationDelay: "300",
+    coursePath: "/continuation-patterns",
+    topics: ["Rising Three Methods", "Doji variations", "Windows/Gaps", "Three Line Strike"],
+    duration: "2 weeks"
+  },
+  {
+    title: "Special & Advanced Patterns",
+    description: "Rare but powerful candlestick patterns including Island Reversals, Kickers, and complex formations.",
+    level: "Advanced",
+    lessons: 11,
+    color: "purple",
+    animationDelay: "400",
+    coursePath: "/special-advanced-patterns",
+    topics: ["Abandoned Baby", "Island Reversal", "Kicking patterns", "Marubozu"],
+    duration: "2 weeks"
+  },
+  {
+    title: "Advanced Strategies",
+    description: "Complex trading strategies, arbitrage, and portfolio management.",
+    level: "Advanced",
+    lessons: 0,
+    color: "slate",
+    animationDelay: "200",
+    coursePath: "/advanced-strategies",
+    topics: ["Arbitrage", "Spread trading", "Statistical trading", "Portfolio optimization"],
+    duration: "Coming Soon"
+  }
+];
 export default function Learn() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white px-8 lg:px-16 py-16">
-      <div className="w-full mx-auto">
-        {/* Header */}
-        <div className="mb-16 text-center animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Learn Trading & Investing
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-4 md:px-8 lg:px-16 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="mb-16 text-center animate-fade-in">
+          {/* Decorative Badge */}
+          <div className="inline-block mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 text-teal-300 rounded-full text-sm font-semibold border border-teal-500/30">
+              <span className="w-2 h-2 bg-teal-400 rounded-full"></span>
+              Master Trading & Investing
+            </span>
+          </div>
+
+          {/* Main Title */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+            Learn <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Trading</span> & <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Investing</span>
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Structured learning content to help you understand markets, trading,
-            and investing from basics to advanced concepts. Master the skills you need to succeed.
+
+          {/* Subtitle */}
+          <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
+            Structured learning content to help you understand markets, trading, and investing from basics to advanced concepts. Master the skills you need to succeed in modern financial markets.
           </p>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto mb-10">
+            <div className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-3 sm:p-4 shadow-lg border border-slate-600/50">
+              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">15</div>
+              <div className="text-xs font-semibold text-slate-400 mt-2">Courses</div>
+            </div>
+            <div className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-3 sm:p-4 shadow-lg border border-slate-600/50">
+              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">100+</div>
+              <div className="text-xs font-semibold text-slate-400 mt-2">Topics</div>
+            </div>
+            <div className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-3 sm:p-4 shadow-lg border border-slate-600/50">
+              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">30+</div>
+              <div className="text-xs font-semibold text-slate-400 mt-2">Hours</div>
+            </div>
+          </div>
+
+          {/* CTA Button */}
           <div className="mt-8">
             <Link
               to="/dashboard"
-              className="inline-flex items-center px-8 py-4 bg-teal-600 text-white text-lg font-semibold rounded-xl hover:bg-teal-700 hover-lift transition-all duration-300 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
             >
+              <span>📊</span>
               View My Progress
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -26,248 +234,23 @@ export default function Learn() {
           </div>
         </div>
 
+        {/* Section Title */}
+        <div className="mb-12 text-center animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Choose Your Learning Path
+          </h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-teal-400 to-cyan-400 mx-auto mt-4 rounded-full"></div>
+        </div>
+
         {/* Learning Modules Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {/* Market Basics */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-100 border border-slate-100">
-            <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Market Basics</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Learn fundamentals like stocks, indices, commodities, and market structure.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-500">Beginner</span>
-              <span className="text-sm font-medium text-blue-600">5 lessons</span>
-            </div>
-          </div>
-
-          {/* Technical Analysis */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-200 border border-slate-100">
-            <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Technical Analysis</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Master chart reading, patterns, indicators, and trading strategies.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Intermediate</span>
-              <span className="text-sm font-medium text-green-600">12 lessons</span>
-            </div>
-            <Link
-              to="/technical-analysis"
-              className="inline-flex items-center text-green-600 hover:text-green-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Risk Management */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-300 border border-slate-100">
-            <div className="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Risk Management</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Risk management, position sizing, and trader mindset.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">All Levels</span>
-              <span className="text-sm font-medium text-red-600">8 lessons</span>
-            </div>
-            <Link
-              to="/risk-management"
-              className="inline-flex items-center text-red-600 hover:text-red-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Derivatives Trading */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-400 border border-slate-100">
-            <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Derivatives Trading</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Futures and options trading - F&O complete guide with strategies.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Advanced</span>
-              <span className="text-sm font-medium text-purple-600">15 lessons</span>
-            </div>
-            <Link
-              to="/derivatives"
-              className="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Cryptocurrency */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-500 border border-slate-100">
-            <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Cryptocurrency</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Digital currencies, blockchain, Bitcoin, Ethereum, and crypto trading.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Intermediate</span>
-              <span className="text-sm font-medium text-orange-600">10 lessons</span>
-            </div>
-            <Link
-              to="/cryptocurrency"
-              className="inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Market Psychology */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in border border-slate-100">
-            <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Market Psychology</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Emotions, fear & greed, discipline, and trader mindset development.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">All Levels</span>
-              <span className="text-sm font-medium text-pink-600">9 lessons</span>
-            </div>
-            <Link
-              to="/market-psychology"
-              className="inline-flex items-center text-pink-600 hover:text-pink-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Bonds & Fixed Income */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-100 border border-slate-100">
-            <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Bonds & Fixed Income</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Government bonds, corporate bonds, yields, and fixed income investing.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Beginner</span>
-              <span className="text-sm font-medium text-indigo-600">7 lessons</span>
-            </div>
-            <Link
-              to="/bonds"
-              className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Mutual Funds */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-200 border border-slate-100">
-            <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Mutual Funds</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              SIP, equity funds, debt funds, portfolio building, and fund selection.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Beginner</span>
-              <span className="text-sm font-medium text-emerald-600">11 lessons</span>
-            </div>
-            <Link
-              to="/mutual-funds"
-              className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Commodities Trading */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-300 border border-slate-100">
-            <div className="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Commodities Trading</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Gold, oil, metals, agriculture - global commodity markets and trading.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Intermediate</span>
-              <span className="text-sm font-medium text-amber-600">8 lessons</span>
-            </div>
-            <Link
-              to="/commodities"
-              className="inline-flex items-center text-amber-600 hover:text-amber-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Technical Indicators */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-400 border border-slate-100">
-            <div className="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Technical Indicators</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              MACD, RSI, Bollinger Bands, Ichimoku - complete indicator guide.
-            </p>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-500">Intermediate</span>
-              <span className="text-sm font-medium text-cyan-600">14 lessons</span>
-            </div>
-            <Link
-              to="/technical-indicators"
-              className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold transition-colors"
-            >
-              Start Learning →
-            </Link>
-          </div>
-
-          {/* Advanced Strategies */}
-          <div className="rounded-2xl bg-white p-8 shadow-lg hover-lift animate-scale-in animate-delay-500 border border-slate-100">
-            <div className="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Advanced Strategies</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Complex trading strategies, arbitrage, and portfolio management.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-500">Advanced</span>
-              <span className="text-sm font-medium text-slate-600">Coming Soon</span>
-            </div>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {courseData.map((course, idx) => (
+            <CourseCard
+              key={course.title}
+              {...course}
+              animationDelay={idx * 0.05}
+            />
+          ))}
         </div>
       </div>
     </div>

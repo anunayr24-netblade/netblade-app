@@ -1,63 +1,87 @@
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-white py-12">
-      <div className="w-full mx-auto px-6">
-        <div className="grid gap-8 md:grid-cols-5">
+    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white py-16 border-t border-slate-800">
+      <div className="w-full mx-auto px-6 lg:px-12">
+        <div className="grid gap-12 md:grid-cols-5 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-teal-400">Netblade</h3>
-            <p className="mt-2 text-sm text-slate-400">
-              Smarter market insights, built for traders.
+            <h3 className="text-2xl font-serif font-bold">
+              Net<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">blade</span>
+            </h3>
+            <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+              Smarter market insights, built for traders worldwide.
             </p>
+            <div className="mt-4 flex gap-3">
+              <a href="#" className="text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                <span className="text-xl">f</span>
+              </a>
+              <a href="#" className="text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                <span className="text-xl">𝕏</span>
+              </a>
+              <a href="#" className="text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                <span className="text-xl">in</span>
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-slate-300">Quick Links</h4>
-            <ul className="mt-2 space-y-1 text-sm text-slate-400">
-              <li><a href="/" className="hover:text-teal-400 transition">Home</a></li>
-              <li><a href="/about" className="hover:text-teal-400 transition">About</a></li>
-              <li><a href="/learn" className="hover:text-teal-400 transition">Learn</a></li>
-              <li><a href="/insights" className="hover:text-teal-400 transition">Insights</a></li>
+            <h4 className="font-bold text-slate-100 text-sm uppercase tracking-widest">Navigation</h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="/" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">🏠 Home</a></li>
+              <li><a href="/about" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">ℹ️ About</a></li>
+              <li><a href="/learn" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">📚 Learn</a></li>
+              <li><a href="/insights" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">💡 Insights</a></li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold text-slate-300">Resources</h4>
-            <ul className="mt-2 space-y-1 text-sm text-slate-400">
-              <li><a href="/market" className="hover:text-teal-400 transition">Market Data</a></li>
-              <li><a href="/community" className="hover:text-teal-400 transition">Community</a></li>
-              <li><a href="/articles" className="hover:text-teal-400 transition">Articles</a></li>
-              <li><a href="/help-center" className="hover:text-teal-400 transition">Help Center</a></li>
+            <h4 className="font-bold text-slate-100 text-sm uppercase tracking-widest">Resources</h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="/market" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">📊 Market Data</a></li>
+              <li><a href="/community" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">👥 Community</a></li>
+              <li><a href="/articles" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">📰 Articles</a></li>
+              <li><a href="/help-center" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">🆘 Help Center</a></li>
             </ul>
           </div>
 
-          {/* Articles */}
+          {/* Learning */}
           <div>
-            <h4 className="font-semibold text-slate-300">Articles</h4>
-            <ul className="mt-2 space-y-1 text-sm text-slate-400">
-              <li><a href="/articles" className="hover:text-teal-400 transition">Market Analysis</a></li>
-              <li><a href="/articles" className="hover:text-teal-400 transition">Trading Strategies</a></li>
-              <li><a href="/articles" className="hover:text-teal-400 transition">Risk Management</a></li>
-              <li><a href="/articles" className="hover:text-teal-400 transition">Market Psychology</a></li>
+            <h4 className="font-bold text-slate-100 text-sm uppercase tracking-widest">Learning</h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="/articles" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">📈 Market Analysis</a></li>
+              <li><a href="/articles" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">💹 Trading Strategies</a></li>
+              <li><a href="/articles" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">🛡️ Risk Management</a></li>
+              <li><a href="/articles" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">🧠 Market Psychology</a></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold text-slate-300">Legal</h4>
-            <ul className="mt-2 space-y-1 text-sm text-slate-400">
-              <li><a href="/privacy-policy" className="hover:text-teal-400 transition">Privacy Policy</a></li>
-              <li><a href="/terms-of-service" className="hover:text-teal-400 transition">Terms of Service</a></li>
-              <li><a href="/disclaimer" className="hover:text-teal-400 transition">Disclaimer</a></li>
+            <h4 className="font-bold text-slate-100 text-sm uppercase tracking-widest">Legal</h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="/glossary" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">📖 Glossary</a></li>
+              <li><a href="/privacy-policy" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">🔒 Privacy Policy</a></li>
+              <li><a href="/terms-of-service" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">📜 Terms of Service</a></li>
+              <li><a href="/disclaimer" className="text-slate-400 hover:text-teal-400 transition-colors duration-300 font-medium">⚠️ Disclaimer</a></li>
             </ul>
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent mb-8"></div>
+
+        {/* Disclaimer */}
+        <div className="text-center mb-6">
+          <p className="text-base font-bold text-slate-300 leading-relaxed">
+            ⚠️ Educational content only. Not investment advice. Market investments are subject to risk.
+          </p>
+        </div>
+
         {/* Bottom */}
-        <div className="mt-8 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
-          <p>&copy; 2026 Netblade. All rights reserved.</p>
+        <div className="text-center text-sm text-slate-400">
+          <p>© 2026 Netblade. All rights reserved. | Empowering traders with smart insights.</p>
         </div>
       </div>
     </footer>
