@@ -1,0 +1,355 @@
+# Netblade API Testing Collection
+
+This file contains sample API requests for testing all endpoints.
+Use with REST Client extension in VS Code or import into Postman.
+
+@baseURL = http://localhost:5000/api/v1
+@token = YOUR_JWT_TOKEN_HERE
+
+###############################################
+# AUTHENTICATION
+###############################################
+
+### Health Check
+GET http://localhost:5000/health
+
+### Register New User
+POST {{baseURL}}/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "password": "Test@123",
+  "username": "testuser"
+}
+
+### Login
+POST {{baseURL}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "Password@123"
+}
+
+### Get Current User (Protected)
+GET {{baseURL}}/auth/me
+Authorization: Bearer {{token}}
+
+### Update Password (Protected)
+PUT {{baseURL}}/auth/update-password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "currentPassword": "Password@123",
+  "newPassword": "NewPassword@123"
+}
+
+### Forgot Password
+POST {{baseURL}}/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "john@example.com"
+}
+
+### Logout (Protected)
+GET {{baseURL}}/auth/logout
+Authorization: Bearer {{token}}
+
+###############################################
+# USERS
+###############################################
+
+### Get My Profile (Protected)
+GET {{baseURL}}/users/profile/me
+Authorization: Bearer {{token}}
+
+### Update Profile (Protected)
+PUT {{baseURL}}/users/profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe Updated",
+  "bio": "Updated bio about trading",
+  "location": "New York, USA",
+  "website": "https://johndoe-trading.com",
+  "experienceLevel": "advanced",
+  "interests": ["Technical Analysis", "Day Trading", "Crypto"],
+  "skills": ["Chart Patterns", "Risk Management"]
+}
+
+### Get User by Username
+GET {{baseURL}}/users/johndoe
+
+### Follow User (Protected)
+POST {{baseURL}}/users/USER_ID_HERE/follow
+Authorization: Bearer {{token}}
+
+### Unfollow User (Protected)
+DELETE {{baseURL}}/users/USER_ID_HERE/unfollow
+Authorization: Bearer {{token}}
+
+### Get User Followers
+GET {{baseURL}}/users/USER_ID_HERE/followers
+
+### Get User Following
+GET {{baseURL}}/users/USER_ID_HERE/following
+
+### Search Users
+GET {{baseURL}}/users/search?q=john&limit=10
+
+### Update Notification Preferences (Protected)
+PUT {{baseURL}}/users/notifications
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "emailUpdates": true,
+  "marketAlerts": true,
+  "communityMentions": false,
+  "weeklyDigest": true
+}
+
+###############################################
+# COURSES
+###############################################
+
+### Get All Courses
+GET {{baseURL}}/courses?limit=20&page=1
+
+### Get Courses by Category
+GET {{baseURL}}/courses?category=Technical%20Analysis
+
+### Get Courses by Level
+GET {{baseURL}}/courses?level=Beginner
+
+### Search Courses
+GET {{baseURL}}/courses?search=risk%20management
+
+### Get Featured Courses
+GET {{baseURL}}/courses?featured=true
+
+### Get Single Course
+GET {{baseURL}}/courses/COURSE_ID_HERE
+
+### Enroll in Course (Protected)
+POST {{baseURL}}/courses/COURSE_ID_HERE/enroll
+Authorization: Bearer {{token}}
+
+### Get My Enrolled Courses (Protected)
+GET {{baseURL}}/courses/my/courses
+Authorization: Bearer {{token}}
+
+### Update Course Progress (Protected)
+PUT {{baseURL}}/courses/COURSE_ID_HERE/progress
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "moduleNumber": 1,
+  "lessonNumber": 2,
+  "completed": true,
+  "quizScore": 85
+}
+
+### Get Course Lessons (Protected - Must be enrolled)
+GET {{baseURL}}/courses/COURSE_ID_HERE/lessons
+Authorization: Bearer {{token}}
+
+###############################################
+# COMMUNITY
+###############################################
+
+### Get All Posts
+GET {{baseURL}}/community/posts?limit=20&page=1
+
+### Get Posts by Category
+GET {{baseURL}}/community/posts?category=Market%20Analysis
+
+### Get Single Post
+GET {{baseURL}}/community/posts/POST_ID_HERE
+
+### Create Post (Protected)
+POST {{baseURL}}/community/posts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "Just learned about support and resistance levels! Can't wait to apply this in my trading 📈",
+  "category": "General",
+  "tags": ["learning", "technical-analysis"]
+}
+
+### Update Post (Protected)
+PUT {{baseURL}}/community/posts/POST_ID_HERE
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "Updated: Just learned about support and resistance levels!",
+  "category": "General",
+  "tags": ["learning", "technical-analysis", "updated"]
+}
+
+### Delete Post (Protected)
+DELETE {{baseURL}}/community/posts/POST_ID_HERE
+Authorization: Bearer {{token}}
+
+### Like/Unlike Post (Protected)
+POST {{baseURL}}/community/posts/POST_ID_HERE/like
+Authorization: Bearer {{token}}
+
+### Comment on Post (Protected)
+POST {{baseURL}}/community/posts/POST_ID_HERE/comment
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "Great post! I learned this last week and it really helped my trading."
+}
+
+### Get User's Posts
+GET {{baseURL}}/community/posts/user/johndoe
+
+###############################################
+# ARTICLES
+###############################################
+
+### Get All Articles
+GET {{baseURL}}/articles?limit=20&page=1
+
+### Get Articles by Category
+GET {{baseURL}}/articles?category=Market%20Analysis
+
+### Get Featured Articles
+GET {{baseURL}}/articles/featured
+
+### Search Articles
+GET {{baseURL}}/articles?search=risk%20management
+
+### Get Single Article
+GET {{baseURL}}/articles/ARTICLE_ID_HERE
+
+### Get Article by Slug
+GET {{baseURL}}/articles/slug/understanding-market-cycles-from-bull-to-bear
+
+### Like Article (Protected)
+POST {{baseURL}}/articles/ARTICLE_ID_HERE/like
+Authorization: Bearer {{token}}
+
+### Bookmark Article (Protected)
+POST {{baseURL}}/articles/ARTICLE_ID_HERE/bookmark
+Authorization: Bearer {{token}}
+
+### Comment on Article (Protected)
+POST {{baseURL}}/articles/ARTICLE_ID_HERE/comment
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "Excellent article! Very helpful for understanding market dynamics."
+}
+
+### Get Articles by Category
+GET {{baseURL}}/articles/category/Risk%20Management
+
+###############################################
+# MARKET DATA
+###############################################
+
+### Get Live Market Prices
+GET {{baseURL}}/market/live-prices
+
+### Get Specific Symbols
+GET {{baseURL}}/market/live-prices?symbols=NIFTY50,SENSEX,BTCUSD
+
+### Get Market Scanner
+GET {{baseURL}}/market/scanner
+
+### Get Economic Calendar
+GET {{baseURL}}/market/calendar
+
+### Get Market Insights
+GET {{baseURL}}/market/insights
+
+### Create Market Alert (Protected)
+POST {{baseURL}}/market/alerts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "symbol": "NIFTY50",
+  "alertType": "price_above",
+  "targetValue": 23000,
+  "message": "NIFTY crossed 23000!"
+}
+
+### Get My Alerts (Protected)
+GET {{baseURL}}/market/alerts
+Authorization: Bearer {{token}}
+
+### Get Active Alerts Only (Protected)
+GET {{baseURL}}/market/alerts?active=true
+Authorization: Bearer {{token}}
+
+### Delete Alert (Protected)
+DELETE {{baseURL}}/market/alerts/ALERT_ID_HERE
+Authorization: Bearer {{token}}
+
+###############################################
+# ACHIEVEMENTS
+###############################################
+
+### Get All Achievements
+GET {{baseURL}}/achievements
+
+### Get Achievements by Category
+GET {{baseURL}}/achievements?category=Learning
+
+### Get My Achievements (Protected)
+GET {{baseURL}}/achievements/my
+Authorization: Bearer {{token}}
+
+### Seed Default Achievements (Admin Only)
+POST {{baseURL}}/achievements/seed
+Authorization: Bearer {{token}}
+
+###############################################
+# DASHBOARD
+###############################################
+
+### Get Dashboard Stats (Protected)
+GET {{baseURL}}/dashboard/stats
+Authorization: Bearer {{token}}
+
+### Get Recent Activity (Protected)
+GET {{baseURL}}/dashboard/activity
+Authorization: Bearer {{token}}
+
+### Get Learning Progress (Protected)
+GET {{baseURL}}/dashboard/learning
+Authorization: Bearer {{token}}
+
+### Get Community Engagement (Protected)
+GET {{baseURL}}/dashboard/community
+Authorization: Bearer {{token}}
+
+### Get Weekly Summary (Protected)
+GET {{baseURL}}/dashboard/weekly
+Authorization: Bearer {{token}}
+
+###############################################
+# NOTES
+###############################################
+
+# After successful login, replace {{token}} with the actual JWT token
+# Most protected routes require the Authorization header
+# Sample users after seeding:
+#   - admin@netblade.com / Admin@123 (Admin)
+#   - john@example.com / Password@123 (User)
